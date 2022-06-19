@@ -35,17 +35,18 @@ class LaraDumps
      * @var mixed[]
      */
     private $backtrace = [];
-    public function __construct(string  $notificationId = '', string $fullUrl = '', array $backtrace = [])
+    public function __construct( $notificationId = '', array $backtrace = [])
     {
-        $this->notificationId = $notificationId;
-        $this->fullUrl = $fullUrl;
-        $this->backtrace = $backtrace;
+
+
         if (config('laradumps.sleep')) {
             $sleep = intval(config('laradumps.sleep'));
             sleep($sleep);
         }
-        $this->fullUrl        = config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps';
+
         $this->notificationId = filled($notificationId) ? $this->notificationId : Str::uuid()->toString();
+        $this->fullUrl        = config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps';
+        $this->backtrace      = $backtrace;
     }
 
     /**
