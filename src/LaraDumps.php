@@ -23,29 +23,30 @@ use LaraDumps\LaraDumps\Payloads\{ClearPayload,
 class LaraDumps
 {
     use Colors;
+
     /**
      * @var string
      */
     public $notificationId = '';
+
     /**
      * @var string
      */
     private $fullUrl = '';
+
     /**
      * @var mixed[]
      */
     private $backtrace = [];
-    public function __construct( $notificationId = '', array $backtrace = [])
+
+    public function __construct(string $notificationId = '', string  $fullUrl = '', array $backtrace = [])
     {
-
-
         if (config('laradumps.sleep')) {
             $sleep = intval(config('laradumps.sleep'));
             sleep($sleep);
         }
-
         $this->notificationId = filled($notificationId) ? $this->notificationId : Str::uuid()->toString();
-        $this->fullUrl        = config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps';
+        $this->fullUrl        = empty($fullUrl) ? config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps' : $fullUrl;
         $this->backtrace      = $backtrace;
     }
 
@@ -184,11 +185,10 @@ class LaraDumps
     }
 
     /**
-     * Send Table
-     *
-     * @param \Illuminate\Support\Collection|mixed[] $data
-     */
-    public function table($data = [], string $name = ''): LaraDumps
+    * Send Table
+    *
+    */
+    public function table(?array $data, string $name = ''): LaraDumps
     {
         $this->send(new TablePayload($data, $name));
 

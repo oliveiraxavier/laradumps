@@ -11,6 +11,7 @@ class LivewirePayload extends Payload
      * @var mixed[]
      */
     protected $component;
+
     public function __construct(array $component)
     {
         $this->component = $component;

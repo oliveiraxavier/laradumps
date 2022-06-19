@@ -16,13 +16,13 @@ class LaraDumpsServiceProvider extends ServiceProvider
         $this->createDirectives();
 
         Str::macro('cut', function (string $str, string $start, string $end) {
-            /** @phpstan-ignore-next-line */
             $arr = explode($start, $str);
-            if (isset($arr[1])) {
-                /** @phpstan-ignore-next-line */
+            if (is_array($arr) && !empty($arr[1])) {
                 $arr = explode($end, $arr[1]);
 
-                return '<pre ' . $arr[0] . '</pre>';
+                if (is_array($arr) && !empty($arr[0])) {
+                    return '<pre ' . $arr[0] . '</pre>';
+                }
             }
 
             return '';

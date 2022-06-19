@@ -8,6 +8,7 @@ class LogPayload extends Payload
      * @var mixed[]
      */
     protected $value;
+
     public function __construct(array $value)
     {
         $this->value = $value;

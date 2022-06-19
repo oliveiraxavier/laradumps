@@ -8,6 +8,7 @@ class ValidateStringPayload extends Payload
      * @var string
      */
     protected $content;
+
     /**
      * @var string
      */
@@ -28,7 +29,7 @@ class ValidateStringPayload extends Payload
     {
         return [
             'type'    => $this->type,
-            'content' => $this->content ?? '',
+            'content' => $this->content ?: '',
         ];
     }
 

@@ -8,14 +8,16 @@ class IdeHandle
      * @var mixed[]
      */
     public $backtrace = [];
+
     public function __construct(array $backtrace = [])
     {
         $this->backtrace = $backtrace;
     }
+
     public function ideHandle(): array
     {
-        $file = $this->backtrace['file'];
-        $line = $this->backtrace['line'];
+        $file = strval($this->backtrace['file']);
+        $line = strval($this->backtrace['line']);
 
         $fileHandle = $this->makeFileHandler($file, $line);
 

@@ -8,6 +8,7 @@ class LabelPayload extends Payload
      * @var string
      */
     public $label;
+
     /**
      * ColorPayload constructor.
      * @param string $label

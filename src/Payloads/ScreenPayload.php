@@ -8,13 +8,15 @@ class ScreenPayload extends Payload
      * @var string
      */
     public $screen;
+
     /**
      * @var bool
      */
     public $classAttr = false;
+
     public function __construct(string $screen, bool $classAttr = false)
     {
-        $this->screen = $screen;
+        $this->screen    = $screen;
         $this->classAttr = $classAttr;
     }
 

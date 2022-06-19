@@ -11,6 +11,7 @@ class RoutesPayload extends Payload
      * @var mixed
      */
     private $except;
+
     /**
      * @param mixed $except
      */

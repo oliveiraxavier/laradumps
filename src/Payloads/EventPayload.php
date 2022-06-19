@@ -6,10 +6,12 @@ class EventPayload extends Payload
 {
     /** @var object|mixed|null */
     protected $event = null;
+
     /**
      * @var string
      */
     protected $eventName;
+
     /**
      * @var mixed[]
      */
@@ -18,7 +20,7 @@ class EventPayload extends Payload
     public function __construct(string $eventName, array $payload)
     {
         $this->eventName = $eventName;
-        $this->payload = $payload;
+        $this->payload   = $payload;
         if (class_exists($eventName)) {
             $this->event = $payload[0];
         }

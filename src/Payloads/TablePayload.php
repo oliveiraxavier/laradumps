@@ -7,17 +7,16 @@ use Illuminate\Support\Collection;
 class TablePayload extends Payload
 {
     /**
-     * @var \Illuminate\Support\Collection|mixed[]
+     * @var Collection|array
      */
-    private $data = [];
+    private $data;
+
     /**
      * @var string
      */
     private $name = '';
-    /**
-     * @param \Illuminate\Support\Collection|mixed[] $data
-     */
-    public function __construct($data = [], string $name = '')
+
+    public function __construct($data, string $name = '')
     {
         $this->data = $data;
         $this->name = $name;
@@ -25,6 +24,7 @@ class TablePayload extends Payload
             $this->name = 'Table';
         }
     }
+
     public function type(): string
     {
         return 'table';

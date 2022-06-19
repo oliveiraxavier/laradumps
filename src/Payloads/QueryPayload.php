@@ -10,6 +10,7 @@ class QueryPayload extends Payload
      * @var \Illuminate\Database\Query\Builder
      */
     protected $query;
+
     public function __construct(Builder $query)
     {
         $this->query = $query;

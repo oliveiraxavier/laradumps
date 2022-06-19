@@ -11,18 +11,21 @@ class BladePayload extends Payload
      * @var mixed
      */
     public $dump;
+
     /**
      * @var string
      */
     public $viewPath;
+
     /**
      * @param mixed $dump
      */
     public function __construct($dump, string $viewPath)
     {
-        $this->dump = $dump;
+        $this->dump     = $dump;
         $this->viewPath = $viewPath;
     }
+
     public function type(): string
     {
         return 'dump';

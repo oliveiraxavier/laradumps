@@ -10,7 +10,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    protected static bool $isRunningTests = false;
+    protected static $isRunningTests = false;
 
     protected function setUp(): void
     {

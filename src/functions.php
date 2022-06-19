@@ -14,7 +14,7 @@ if (!function_exists('ds')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -52,7 +52,7 @@ if (!function_exists('ds1')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -60,7 +60,7 @@ if (!function_exists('ds1')) {
             }
         }
 
-        return new LaraDumps($notificationId, $backtrace);
+        return new LaraDumps($notificationId, '', $backtrace);
     }
 }
 
@@ -73,7 +73,7 @@ if (!function_exists('ds2')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -81,7 +81,7 @@ if (!function_exists('ds2')) {
             }
         }
 
-        return new LaraDumps($notificationId, $backtrace);
+        return new LaraDumps($notificationId, '', $backtrace);
     }
 }
 
@@ -94,7 +94,7 @@ if (!function_exists('ds3')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -102,7 +102,7 @@ if (!function_exists('ds3')) {
             }
         }
 
-        return new LaraDumps($notificationId, $backtrace);
+        return new LaraDumps($notificationId, '', $backtrace);
     }
 }
 
@@ -115,7 +115,7 @@ if (!function_exists('ds4')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -123,7 +123,7 @@ if (!function_exists('ds4')) {
             }
         }
 
-        return new LaraDumps($notificationId, $backtrace);
+        return new LaraDumps($notificationId, '', $backtrace);
     }
 }
 
@@ -136,7 +136,7 @@ if (!function_exists('ds5')) {
         $backtrace   = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
 
         $notificationId = Str::uuid()->toString();
-        $dump           = new LaraDumps($notificationId, $backtrace);
+        $dump           = new LaraDumps($notificationId, '', $backtrace);
 
         if ($args) {
             foreach ($args as $arg) {
@@ -144,7 +144,7 @@ if (!function_exists('ds5')) {
             }
         }
 
-        return new LaraDumps($notificationId, $backtrace);
+        return new LaraDumps($notificationId, '', $backtrace);
     }
 }
 
@@ -170,7 +170,7 @@ if (!function_exists('dsBlade')) {
         ];
 
         $notificationId = Str::uuid()->toString();
-        $ds             = new LaraDumps($notificationId, $backtrace);
+        $ds             = new LaraDumps($notificationId, '', $backtrace);
         $ds->send(new BladePayload($args, $viewPath));
     }
 }
