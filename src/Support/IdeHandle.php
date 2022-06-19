@@ -4,11 +4,14 @@ namespace LaraDumps\LaraDumps\Support;
 
 class IdeHandle
 {
-    public function __construct(
-        public array $backtrace = [],
-    ) {
+    /**
+     * @var mixed[]
+     */
+    public $backtrace = [];
+    public function __construct(array $backtrace = [])
+    {
+        $this->backtrace = $backtrace;
     }
-
     public function ideHandle(): array
     {
         $file = $this->backtrace['file'];
@@ -16,13 +19,13 @@ class IdeHandle
 
         $fileHandle = $this->makeFileHandler($file, $line);
 
-        if (str_contains($file, 'Laravel Kit')) {
+        if (strpos($file, 'Laravel Kit') !== false) {
             $fileHandle       = '';
             $file             = 'Laravel Kit';
             $line             = '';
         }
 
-        if (str_contains($file, 'eval()')) {
+        if (strpos($file, 'eval()') !== false) {
             $fileHandle       = '';
             $file             = 'Tinker';
             $line             = '';
@@ -30,7 +33,7 @@ class IdeHandle
 
         $file = str_replace(base_path() . '/', '', strval($file));
 
-        if (str_contains($file, 'resources')) {
+        if (strpos($file, 'resources') !== false) {
             $file = str_replace('resources/views/', '', strval($file));
         }
 

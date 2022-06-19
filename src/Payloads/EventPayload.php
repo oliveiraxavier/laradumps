@@ -5,10 +5,20 @@ namespace LaraDumps\LaraDumps\Payloads;
 class EventPayload extends Payload
 {
     /** @var object|mixed|null */
-    protected mixed $event = null;
+    protected $event = null;
+    /**
+     * @var string
+     */
+    protected $eventName;
+    /**
+     * @var mixed[]
+     */
+    protected $payload;
 
-    public function __construct(protected string $eventName, protected array $payload)
+    public function __construct(string $eventName, array $payload)
     {
+        $this->eventName = $eventName;
+        $this->payload = $payload;
         if (class_exists($eventName)) {
             $this->event = $payload[0];
         }

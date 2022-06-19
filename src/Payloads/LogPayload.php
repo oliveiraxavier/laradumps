@@ -4,9 +4,13 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class LogPayload extends Payload
 {
-    public function __construct(
-        protected array $value
-    ) {
+    /**
+     * @var mixed[]
+     */
+    protected $value;
+    public function __construct(array $value)
+    {
+        $this->value = $value;
     }
 
     public function type(): string

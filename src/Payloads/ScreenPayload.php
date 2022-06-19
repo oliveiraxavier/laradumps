@@ -4,10 +4,18 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class ScreenPayload extends Payload
 {
-    public function __construct(
-        public string $screen,
-        public bool $classAttr = false
-    ) {
+    /**
+     * @var string
+     */
+    public $screen;
+    /**
+     * @var bool
+     */
+    public $classAttr = false;
+    public function __construct(string $screen, bool $classAttr = false)
+    {
+        $this->screen = $screen;
+        $this->classAttr = $classAttr;
     }
 
     public function type(): string

@@ -6,9 +6,13 @@ use Illuminate\Database\Query\Builder;
 
 class QueryPayload extends Payload
 {
-    public function __construct(
-        protected Builder $query
-    ) {
+    /**
+     * @var \Illuminate\Database\Query\Builder
+     */
+    protected $query;
+    public function __construct(Builder $query)
+    {
+        $this->query = $query;
     }
 
     public function content(): array

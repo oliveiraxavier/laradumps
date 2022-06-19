@@ -4,9 +4,13 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class ColorPayload extends Payload
 {
-    public function __construct(
-        public string $color
-    ) {
+    /**
+     * @var string
+     */
+    public $color;
+    public function __construct(string $color)
+    {
+        $this->color = $color;
     }
 
     public function type(): string

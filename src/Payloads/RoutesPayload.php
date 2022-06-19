@@ -7,9 +7,16 @@ use Illuminate\Support\{Arr, Collection, Str};
 
 class RoutesPayload extends Payload
 {
-    public function __construct(
-        private mixed $except
-    ) {
+    /**
+     * @var mixed
+     */
+    private $except;
+    /**
+     * @param mixed $except
+     */
+    public function __construct($except)
+    {
+        $this->except = $except;
     }
 
     public function type(): string
@@ -61,9 +68,6 @@ class RoutesPayload extends Payload
 
     public function getAllExcepts(): array
     {
-        return array_merge(
-            (array) config('laradumps.ignore_route_contains', []),
-            Arr::wrap($this->except),
-        );
+        return array_merge((array) config('laradumps.ignore_route_contains', []), Arr::wrap($this->except));
     }
 }

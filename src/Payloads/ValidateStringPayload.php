@@ -4,11 +4,18 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class ValidateStringPayload extends Payload
 {
-    protected string $content;
+    /**
+     * @var string
+     */
+    protected $content;
+    /**
+     * @var string
+     */
+    public $type;
 
-    public function __construct(
-        public string $type
-    ) {
+    public function __construct(string $type)
+    {
+        $this->type = $type;
     }
 
     public function type(): string

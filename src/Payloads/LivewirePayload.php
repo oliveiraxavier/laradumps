@@ -7,9 +7,13 @@ use LaraDumps\LaraDumps\Support\IdeHandle;
 
 class LivewirePayload extends Payload
 {
-    public function __construct(
-        protected array $component
-    ) {
+    /**
+     * @var mixed[]
+     */
+    protected $component;
+    public function __construct(array $component)
+    {
+        $this->component = $component;
     }
 
     public function content(): array
@@ -21,7 +25,7 @@ class LivewirePayload extends Payload
 
     public function customHandle(): array
     {
-        $component = Str::of(base_path() . '/' . $this->component['component'] . '.php')->replace('\\', '/', )->replace('App', 'app');
+        $component = Str::of(base_path() . '/' . $this->component['component'] . '.php')->replace('\\', '/')->replace('App', 'app');
 
         return [
             'handler' => IdeHandle::makeFileHandler($component, '1'),

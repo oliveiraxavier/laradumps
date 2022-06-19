@@ -6,15 +6,25 @@ use Illuminate\Support\Collection;
 
 class TablePayload extends Payload
 {
-    public function __construct(
-        private Collection | array  $data = [],
-        private string $name = '',
-    ) {
+    /**
+     * @var \Illuminate\Support\Collection|mixed[]
+     */
+    private $data = [];
+    /**
+     * @var string
+     */
+    private $name = '';
+    /**
+     * @param \Illuminate\Support\Collection|mixed[] $data
+     */
+    public function __construct($data = [], string $name = '')
+    {
+        $this->data = $data;
+        $this->name = $name;
         if (blank($this->name)) {
             $this->name = 'Table';
         }
     }
-
     public function type(): string
     {
         return 'table';

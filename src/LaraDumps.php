@@ -23,22 +23,36 @@ use LaraDumps\LaraDumps\Payloads\{ClearPayload,
 class LaraDumps
 {
     use Colors;
-
-    public function __construct(
-        public string  $notificationId = '',
-        private string $fullUrl = '',
-        private array $backtrace = [],
-    ) {
+    /**
+     * @var string
+     */
+    public $notificationId = '';
+    /**
+     * @var string
+     */
+    private $fullUrl = '';
+    /**
+     * @var mixed[]
+     */
+    private $backtrace = [];
+    public function __construct(string  $notificationId = '', string $fullUrl = '', array $backtrace = [])
+    {
+        $this->notificationId = $notificationId;
+        $this->fullUrl = $fullUrl;
+        $this->backtrace = $backtrace;
         if (config('laradumps.sleep')) {
             $sleep = intval(config('laradumps.sleep'));
             sleep($sleep);
         }
-
         $this->fullUrl        = config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps';
         $this->notificationId = filled($notificationId) ? $this->notificationId : Str::uuid()->toString();
     }
 
-    public function send(array|Payload $payload): array|Payload
+    /**
+     * @param mixed[]|\LaraDumps\LaraDumps\Payloads\Payload $payload
+     * @return mixed[]|\LaraDumps\LaraDumps\Payloads\Payload
+     */
+    public function send($payload)
     {
         if ($payload instanceof Payload) {
             $payload->trace($this->backtrace);
@@ -47,7 +61,7 @@ class LaraDumps
 
             try {
                 Http::post($this->fullUrl, $payload);
-            } catch (\Throwable) {
+            } catch (\Throwable $exception) {
             }
         }
 
@@ -159,8 +173,9 @@ class LaraDumps
     /**
      * Send Routes
      *
+     * @param mixed ...$except
      */
-    public function routes(mixed ...$except): LaraDumps
+    public function routes(...$except): LaraDumps
     {
         $this->send(new RoutesPayload($except));
 
@@ -170,15 +185,19 @@ class LaraDumps
     /**
      * Send Table
      *
+     * @param \Illuminate\Support\Collection|mixed[] $data
      */
-    public function table(Collection|array $data = [], string $name = ''): LaraDumps
+    public function table($data = [], string $name = ''): LaraDumps
     {
         $this->send(new TablePayload($data, $name));
 
         return $this;
     }
 
-    public function write(mixed $args = null): LaraDumps
+    /**
+     * @param mixed $args
+     */
+    public function write($args = null): LaraDumps
     {
         $originalContent = $args;
         $args            = Support\Dumper::dump($args);
@@ -230,8 +249,10 @@ class LaraDumps
     /**
      * Check the difference between two texts
      *
+     * @param mixed $first
+     * @param mixed $second
      */
-    public function diff(mixed $first, mixed $second, bool $col = false): LaraDumps
+    public function diff($first, $second, bool $col = false): LaraDumps
     {
         $first  = is_array($first) ? json_encode($first) : $first;
         $second = is_array($second) ? json_encode($second) : $second;

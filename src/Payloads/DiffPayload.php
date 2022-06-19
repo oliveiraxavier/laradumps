@@ -4,13 +4,28 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class DiffPayload extends Payload
 {
-    public function __construct(
-        public mixed $first,
-        public mixed $second,
-        public bool $col,
-    ) {
+    /**
+     * @var mixed
+     */
+    public $first;
+    /**
+     * @var mixed
+     */
+    public $second;
+    /**
+     * @var bool
+     */
+    public $col;
+    /**
+     * @param mixed $first
+     * @param mixed $second
+     */
+    public function __construct($first, $second, bool $col)
+    {
+        $this->first = $first;
+        $this->second = $second;
+        $this->col = $col;
     }
-
     public function type(): string
     {
         return 'diff';

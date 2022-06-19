@@ -8,7 +8,10 @@ use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 class Dumper
 {
-    public static function dump(mixed $arguments): string
+    /**
+     * @param mixed $arguments
+     */
+    public static function dump($arguments): string
     {
         $varCloner = new VarCloner();
 

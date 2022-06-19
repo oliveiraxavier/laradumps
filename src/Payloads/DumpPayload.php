@@ -4,12 +4,22 @@ namespace LaraDumps\LaraDumps\Payloads;
 
 class DumpPayload extends Payload
 {
-    public function __construct(
-        public string $dump,
-        public mixed $originalContent = null,
-    ) {
+    /**
+     * @var string
+     */
+    public $dump;
+    /**
+     * @var mixed
+     */
+    public $originalContent = null;
+    /**
+     * @param mixed $originalContent
+     */
+    public function __construct(string $dump, $originalContent = null)
+    {
+        $this->dump = $dump;
+        $this->originalContent = $originalContent;
     }
-
     public function type(): string
     {
         return 'dump';

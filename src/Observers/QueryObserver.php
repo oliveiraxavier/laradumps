@@ -9,11 +9,20 @@ use LaraDumps\LaraDumps\Payloads\QueriesPayload;
 
 class QueryObserver
 {
-    private bool $enabled = false;
+    /**
+     * @var bool
+     */
+    private $enabled = false;
 
-    private ?string $label = null;
+    /**
+     * @var string|null
+     */
+    private $label;
 
-    private array $trace;
+    /**
+     * @var mixed[]
+     */
+    private $trace;
 
     public function register(): void
     {
@@ -33,7 +42,7 @@ class QueryObserver
                 'query'          => $query,
             ];
 
-            $dumps = new LaraDumps(backtrace: $this->trace);
+            $dumps = new LaraDumps('', '', $this->trace);
 
             $dumps->send(new QueriesPayload($queries));
 

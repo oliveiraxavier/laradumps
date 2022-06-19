@@ -6,11 +6,20 @@ use LaraDumps\LaraDumps\Support\IdeHandle;
 
 abstract class Payload
 {
-    private string $notificationId;
+    /**
+     * @var string
+     */
+    private $notificationId;
 
-    private array $backtrace = [];
+    /**
+     * @var mixed[]
+     */
+    private $backtrace = [];
 
-    protected array $typesWithTrace = [
+    /**
+     * @var mixed[]
+     */
+    protected $typesWithTrace = [
         'table',
         'validate',
         'query',
@@ -40,7 +49,7 @@ abstract class Payload
 
     public function ideHandle(): array
     {
-        $trace = new IdeHandle(backtrace: $this->backtrace);
+        $trace = new IdeHandle($this->backtrace);
 
         return $trace->ideHandle();
     }
@@ -73,7 +82,7 @@ abstract class Payload
         if (class_exists(\Composer\InstalledVersions::class)) {
             try {
                 return \Composer\InstalledVersions::getVersion('laradumps/laradumps');
-            } catch (\Exception) {
+            } catch (\Exception $exception) {
                 return '0.0.0';
             }
         }

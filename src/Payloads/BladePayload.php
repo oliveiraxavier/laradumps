@@ -7,12 +7,22 @@ use LaraDumps\LaraDumps\Support\IdeHandle;
 
 class BladePayload extends Payload
 {
-    public function __construct(
-        public mixed $dump,
-        public string $viewPath,
-    ) {
+    /**
+     * @var mixed
+     */
+    public $dump;
+    /**
+     * @var string
+     */
+    public $viewPath;
+    /**
+     * @param mixed $dump
+     */
+    public function __construct($dump, string $viewPath)
+    {
+        $this->dump = $dump;
+        $this->viewPath = $viewPath;
     }
-
     public function type(): string
     {
         return 'dump';

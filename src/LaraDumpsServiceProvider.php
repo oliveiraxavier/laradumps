@@ -55,7 +55,7 @@ class LaraDumpsServiceProvider extends ServiceProvider
                     return $trace['function'] === '__call' && $trace['class'] === 'Illuminate\Database\Eloquent\Builder';
                 });
 
-            $ds = new LaraDumps(backtrace: (array) $backtrace->first());
+            $ds = new LaraDumps('', '', (array) $backtrace->first());
             /** @phpstan-ignore-next-line  */
             $ds->send(new QueryPayload($this));
 
