@@ -45,7 +45,7 @@ class LaraDumps
             $sleep = intval(config('laradumps.sleep'));
             sleep($sleep);
         }
-        $this->notificationId = filled($notificationId) ? $this->notificationId : Str::uuid()->toString();
+        $this->notificationId = $notificationId !== '' ? $notificationId : Str::uuid()->toString();
         $this->fullUrl        = empty($fullUrl) ? config('laradumps.host') . ':' . config('laradumps.port') . '/api/dumps' : $fullUrl;
         $this->backtrace      = $backtrace;
     }
@@ -186,10 +186,16 @@ class LaraDumps
 
     /**
     * Send Table
-    *
+    * @param mixed|array $data
     */
-    public function table(?array $data, string $name = ''): LaraDumps
+    public function table($data = null, string $name = ''): LaraDumps
     {
+        if ($data instanceof Collection) {
+            $data = $data->toArray();
+        }
+
+        $data = !empty($data) ? (array) $data : [];
+
         $this->send(new TablePayload($data, $name));
 
         return $this;
