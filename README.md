@@ -83,3 +83,20 @@ And also with the blade directive:
 ### Credits
 
 - Logo by [Vitor S. Rodrigues](https://twitter.com/V1t0rSOuz4)
+
+######  Esse repositório é um fork apenas e foi modificado e testado  para rodar com a versão PHP7.3. Os créditos são únicos dos criadores.
+
+
+######  Para importar usando o composer/composer.json
+
+Adicione o conteúdo abaixo ao seu composer.json
+```
+"repositories": [{
+    "type": "vcs",
+    "url": "https://github.com/oliveiraxavier/laradumps.git"
+}]
+```
+Rode
+``` 
+ composer require laradumps/laradumps:dev-support-php73 --dev
+```
