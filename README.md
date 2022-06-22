@@ -100,3 +100,12 @@ Rode
 ``` 
  composer require laradumps/laradumps:dev-support-php73 --dev
 ```
+Ou então adicione no composer.json
+
+```
+"require-dev": {
+        .....
+        "laradumps/laradumps": "dev-support-php73",
+        .....   
+}
+```
