@@ -52,7 +52,12 @@ class LaraDumpsServiceProvider extends ServiceProvider
 
             $backtrace = collect($backtrace)
                 ->filter(function ($trace) {
-                    return $trace['function'] === '__call' && $trace['class'] === 'Illuminate\Database\Eloquent\Builder';
+                    if (!empty($trace['file'])) {
+
+                        $file = $trace['file'];
+    
+                        return !Str::contains($file, 'vendor');
+                    }
                 });
 
             $ds = new LaraDumps('', '', (array) $backtrace->first());
