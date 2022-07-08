@@ -58,7 +58,12 @@ abstract class Payload
     {
         return [];
     }
-
+    
+    public function autoInvokeApp(?bool $enable = null): void
+    {
+        $this->autoInvokeApp = $enable;
+    }
+    
     public function toArray(): array
     {
         $ideHandle = $this->customHandle();
@@ -71,6 +76,7 @@ abstract class Payload
             'type' => $this->type(),
             'meta' => [
                 'laradumps_version' => $this->getInstalledVersion(),
+                'auto_invoke_app'   => $this->autoInvokeApp ?? boolval(config('laradumps.auto_invoke_app')),
             ],
             'content'   => $this->content(),
             'ideHandle' => $ideHandle,
