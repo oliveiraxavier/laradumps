@@ -14,7 +14,12 @@ class LaraDumpsServiceProvider extends ServiceProvider
     {
         $this->loadConfigs();
         $this->createDirectives();
-
+        $this->bootMacros();
+        $this->bootObservers();
+    }
+    
+    private function bootMacros(): void
+    {
         Str::macro('cut', function (string $str, string $start, string $end) {
             $arr = explode($start, $str);
             if (is_array($arr) && !empty($arr[1])) {
@@ -27,12 +32,15 @@ class LaraDumpsServiceProvider extends ServiceProvider
 
             return '';
         });
-
+    }
+    
+    private function bootObservers(): void
+    {
         app(LogObserver::class)->register();
         app(QueryObserver::class)->register();
         app(LivewireObserver::class)->register();
     }
-
+    
     public function register(): void
     {
         $this->mergeConfigFrom(
