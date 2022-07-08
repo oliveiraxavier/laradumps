@@ -75,10 +75,32 @@ class LaraDumpsServiceProvider extends ServiceProvider
         ], 'laradumps-config');
     }
 
-    private function createDirectives(): void
+        private function createDirectives(): void
     {
         Blade::directive('ds', function ($args) {
             return "<?php dsBlade($args); ?>";
+        });
+
+        Blade::directive('dsAutoClearOnPageReload', function ($args) {
+            if (!boolval(config('laradumps.auto_clear_on_page_reload')) || !boolval(config('laradumps.send_livewire_components'))) {
+                return '';
+            }
+
+            $csrf = csrf_token();
+
+            return <<<HTML
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    window.onbeforeunload = () => {
+       const xmlhttp = new XMLHttpRequest();
+       xmlhttp.open("POST", "/__ds__/clear");
+       xmlhttp.setRequestHeader('X-CSRF-TOKEN', '{$csrf}');
+       xmlhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+       xmlhttp.send(JSON.stringify({ "ds": true }));
+    }
+}, false);
+</script>
+HTML;
         });
     }
 }
