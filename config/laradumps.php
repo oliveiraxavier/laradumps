@@ -186,27 +186,4 @@ return [
     */
 
     'sleep' => env('DS_SLEEP'),
-    
-    /*
-    |--------------------------------------------------------------------------
-    |  Auto Invoke App
-    |--------------------------------------------------------------------------
-    |
-    | By default the LaraDumps app will always be invoked on every dump.
-    | Set 'false' to disable this behavior
-    |
-    */
-    'auto_invoke_app' => env('DS_AUTO_INVOKE_APP', true),
-    
-    /*
-    |  Auto-Clear on page reload
-    |--------------------------------------------------------------------------
-    |
-    | When debugging Livewire, you need to clear your LaraDumps APP history
-    | every time the page is reloaded to keep track of your components.
-    | Set auto_clear_on_page_reload to true so LaraDumps will clear history automatically on page reload.
-    |
-     */
-
-    'auto_clear_on_page_reload' => env('DS_AUTO_CLEAR_ON_PAGE_RELOAD', false),
 ];
