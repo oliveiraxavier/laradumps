@@ -187,7 +187,6 @@ return [
 
     'sleep' => env('DS_SLEEP'),
     
-    
     /*
     |--------------------------------------------------------------------------
     |  Auto Invoke App
@@ -199,7 +198,7 @@ return [
     */
     'auto_invoke_app' => env('DS_AUTO_INVOKE_APP', true),
     
-    /**
+    /*
     |  Auto-Clear on page reload
     |--------------------------------------------------------------------------
     |
@@ -208,4 +207,6 @@ return [
     | Set auto_clear_on_page_reload to true so LaraDumps will clear history automatically on page reload.
     |
      */
+
+    'auto_clear_on_page_reload' => env('DS_AUTO_CLEAR_ON_PAGE_RELOAD', false),
 ];
