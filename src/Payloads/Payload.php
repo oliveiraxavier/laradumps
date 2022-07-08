@@ -6,19 +6,10 @@ use LaraDumps\LaraDumps\Support\IdeHandle;
 
 abstract class Payload
 {
-    /**
-     * @var string
-     */
     private $notificationId;
-
-    /**
-     * @var mixed[]
-     */
+    
     private $backtrace = [];
 
-    /**
-     * @var mixed[]
-     */
     protected $typesWithTrace = [
         'table',
         'validate',
@@ -29,6 +20,8 @@ abstract class Payload
         'diff',
         'model',
     ];
+    
+    private $autoInvokeApp = null;
 
     abstract public function type(): string;
 
