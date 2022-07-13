@@ -109,3 +109,4 @@ Ou então adicione no composer.json
         .....   
 }
 ```
+Se adicionar na mão o conteúdo acima (require-dev), rode composer update
